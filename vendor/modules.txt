@@ -1,0 +1,81 @@
+# github.com/BurntSushi/xgb v0.0.0-20210121224620-deaf085860bc
+## explicit
+github.com/BurntSushi/xgb
+github.com/BurntSushi/xgb/randr
+github.com/BurntSushi/xgb/render
+github.com/BurntSushi/xgb/xproto
+# github.com/antchfx/htmlquery v1.2.3
+## explicit
+github.com/antchfx/htmlquery
+# github.com/antchfx/xpath v1.1.11
+## explicit
+github.com/antchfx/xpath
+# github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
+## explicit
+github.com/golang/groupcache/lru
+# golang.org/x/exp v0.0.0-20210503015746-b3083d562e1d
+## explicit
+golang.org/x/exp/io/i2c
+golang.org/x/exp/io/i2c/driver
+# golang.org/x/net v0.0.0-20210505214959-0714010a04ed
+## explicit
+golang.org/x/net/html
+golang.org/x/net/html/atom
+golang.org/x/net/html/charset
+# golang.org/x/sys v0.0.0-20210423082822-04245dca01da
+## explicit
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/windows
+golang.org/x/sys/windows/registry
+# golang.org/x/text v0.3.6
+golang.org/x/text/encoding
+golang.org/x/text/encoding/charmap
+golang.org/x/text/encoding/htmlindex
+golang.org/x/text/encoding/internal
+golang.org/x/text/encoding/internal/identifier
+golang.org/x/text/encoding/japanese
+golang.org/x/text/encoding/korean
+golang.org/x/text/encoding/simplifiedchinese
+golang.org/x/text/encoding/traditionalchinese
+golang.org/x/text/encoding/unicode
+golang.org/x/text/internal/language
+golang.org/x/text/internal/language/compact
+golang.org/x/text/internal/tag
+golang.org/x/text/internal/utf8internal
+golang.org/x/text/language
+golang.org/x/text/runes
+golang.org/x/text/transform
+# periph.io/x/conn/v3 v3.6.7
+## explicit
+periph.io/x/conn/v3
+periph.io/x/conn/v3/driver
+periph.io/x/conn/v3/driver/driverreg
+periph.io/x/conn/v3/gpio
+periph.io/x/conn/v3/gpio/gpioreg
+periph.io/x/conn/v3/gpio/gpiostream
+periph.io/x/conn/v3/i2c
+periph.io/x/conn/v3/i2c/i2creg
+periph.io/x/conn/v3/physic
+periph.io/x/conn/v3/pin
+periph.io/x/conn/v3/pin/pinreg
+periph.io/x/conn/v3/spi
+periph.io/x/conn/v3/spi/spireg
+# periph.io/x/host/v3 v3.6.7
+## explicit
+periph.io/x/host/v3
+periph.io/x/host/v3/allwinner
+periph.io/x/host/v3/am335x
+periph.io/x/host/v3/bcm283x
+periph.io/x/host/v3/beagle/black
+periph.io/x/host/v3/beagle/bone
+periph.io/x/host/v3/beagle/green
+periph.io/x/host/v3/chip
+periph.io/x/host/v3/cpu
+periph.io/x/host/v3/distro
+periph.io/x/host/v3/fs
+periph.io/x/host/v3/odroidc1
+periph.io/x/host/v3/pine64
+periph.io/x/host/v3/pmem
+periph.io/x/host/v3/rpi
+periph.io/x/host/v3/sysfs
+periph.io/x/host/v3/videocore
