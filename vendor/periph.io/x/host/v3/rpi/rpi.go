@@ -384,6 +384,7 @@ const (
 	memory1GB   revisionCode = 2 << memoryShift
 	memory2GB   revisionCode = 3 << memoryShift
 	memory4GB   revisionCode = 4 << memoryShift
+	memory8GB   revisionCode = 5 << memoryShift
 
 	sonyUK    revisionCode = 0 << manufacturerShift
 	egoman    revisionCode = 1 << manufacturerShift
@@ -413,6 +414,9 @@ const (
 	boardReserved revisionCode = 0xf << boardShift
 	boardCM3Plus  revisionCode = 0x10 << boardShift
 	board4B       revisionCode = 0x11 << boardShift
+	boardZero2W   revisionCode = 0x12 << boardShift
+	board400      revisionCode = 0x13 << boardShift
+	boardCM4      revisionCode = 0x14 << boardShift
 )
 
 // features represents the different features on various Raspberry Pi boards.
@@ -502,6 +506,14 @@ func (f *features) init(v uint32) error {
 		f.hdrAudio = true
 		f.audioLeft41 = true
 		f.hdrHDMI = true
+	case boardZero2W:
+		f.hdrP1P40 = true
+		f.hdrHDMI = true
+	case board400:
+		f.hdrP1P40 = true
+		f.hdrHDMI = true
+	case boardCM4:
+		// Compute Module does not have a SODIMM header.
 	default:
 		return fmt.Errorf("rpi: unknown hardware version: 0x%x", r)
 	}

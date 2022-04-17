@@ -102,7 +102,7 @@ func uallocMemLocked(size int) ([]byte, error) {
 		for i := range b {
 			b[i] = 0
 		}
-		if err := mlock(b); err != nil {
+		if err = mlock(b); err != nil {
 			// Ignore the unmap error.
 			_ = munmap(b)
 			return nil, wrapf("locking %d bytes failed: %v", size, err)
@@ -165,8 +165,8 @@ func virtToPhys(virt uintptr) (uint64, error) {
 }
 
 func toRaw(b []byte) uintptr {
-	header := *(*reflect.SliceHeader)(unsafe.Pointer(&b))
-	return header.Data
+	h := (*reflect.SliceHeader)(unsafe.Pointer(&b))
+	return h.Data
 }
 
 // isWSL returns true if running under Windows Subsystem for Linux.

@@ -1,4 +1,4 @@
-package edid
+package edid // import "gitlab.com/lehn/edid"
 
 import (
 	"time"

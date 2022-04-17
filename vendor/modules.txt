@@ -4,30 +4,27 @@ github.com/BurntSushi/xgb
 github.com/BurntSushi/xgb/randr
 github.com/BurntSushi/xgb/render
 github.com/BurntSushi/xgb/xproto
-# github.com/antchfx/htmlquery v1.2.3
-## explicit
+# github.com/antchfx/htmlquery v1.2.4
+## explicit; go 1.14
 github.com/antchfx/htmlquery
-# github.com/antchfx/xpath v1.1.11
-## explicit
+# github.com/antchfx/xpath v1.2.0
+## explicit; go 1.14
 github.com/antchfx/xpath
 # github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da
 ## explicit
 github.com/golang/groupcache/lru
-# golang.org/x/exp v0.0.0-20210503015746-b3083d562e1d
-## explicit
-golang.org/x/exp/io/i2c
-golang.org/x/exp/io/i2c/driver
-# golang.org/x/net v0.0.0-20210505214959-0714010a04ed
-## explicit
+# golang.org/x/net v0.0.0-20220412020605-290c469a71a5
+## explicit; go 1.17
 golang.org/x/net/html
 golang.org/x/net/html/atom
 golang.org/x/net/html/charset
-# golang.org/x/sys v0.0.0-20210423082822-04245dca01da
-## explicit
+# golang.org/x/sys v0.0.0-20220412211240-33da011f77ad
+## explicit; go 1.17
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/windows
 golang.org/x/sys/windows/registry
-# golang.org/x/text v0.3.6
+# golang.org/x/text v0.3.7
+## explicit; go 1.17
 golang.org/x/text/encoding
 golang.org/x/text/encoding/charmap
 golang.org/x/text/encoding/htmlindex
@@ -45,8 +42,8 @@ golang.org/x/text/internal/utf8internal
 golang.org/x/text/language
 golang.org/x/text/runes
 golang.org/x/text/transform
-# periph.io/x/conn/v3 v3.6.7
-## explicit
+# periph.io/x/conn/v3 v3.6.10
+## explicit; go 1.13
 periph.io/x/conn/v3
 periph.io/x/conn/v3/driver
 periph.io/x/conn/v3/driver/driverreg
@@ -60,8 +57,8 @@ periph.io/x/conn/v3/pin
 periph.io/x/conn/v3/pin/pinreg
 periph.io/x/conn/v3/spi
 periph.io/x/conn/v3/spi/spireg
-# periph.io/x/host/v3 v3.6.7
-## explicit
+# periph.io/x/host/v3 v3.7.2
+## explicit; go 1.13
 periph.io/x/host/v3
 periph.io/x/host/v3/allwinner
 periph.io/x/host/v3/am335x

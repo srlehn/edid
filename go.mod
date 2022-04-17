@@ -5,7 +5,6 @@ go 1.18
 require (
 	github.com/BurntSushi/xgb v0.0.0-20210121224620-deaf085860bc
 	github.com/antchfx/htmlquery v1.2.4
-	golang.org/x/exp v0.0.0-20210503015746-b3083d562e1d
 	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad
 	periph.io/x/conn/v3 v3.6.10
 	periph.io/x/host/v3 v3.7.2

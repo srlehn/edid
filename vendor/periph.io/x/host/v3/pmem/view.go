@@ -20,10 +20,12 @@ type Slice []byte
 
 // Uint32 returns a view of the byte slice as a []uint32.
 func (s *Slice) Uint32() []uint32 {
-	header := *(*reflect.SliceHeader)(unsafe.Pointer(s))
-	header.Len /= 4
-	header.Cap /= 4
-	return *(*[]uint32)(unsafe.Pointer(&header))
+	// It's important to make a copy here.
+	h := new(reflect.SliceHeader)
+	h.Data = (*reflect.SliceHeader)(unsafe.Pointer(s)).Data
+	h.Len = (*reflect.SliceHeader)(unsafe.Pointer(s)).Len / 4
+	h.Cap = (*reflect.SliceHeader)(unsafe.Pointer(s)).Cap / 4
+	return *(*[]uint32)(unsafe.Pointer(h))
 }
 
 // Bytes implements Mem.
@@ -178,13 +180,13 @@ func mapGPIOLinux() (*View, error) {
 	if gpioMemView == nil && gpioMemErr == nil {
 		if f, err := openFile("/dev/gpiomem", os.O_RDWR|os.O_SYNC); err == nil {
 			defer f.Close()
-			if i, err := mmap(f.Fd(), 0, pageSize); err == nil {
+			if i, err2 := mmap(f.Fd(), 0, pageSize); err2 == nil {
 				gpioMemView = &View{Slice: i, orig: i, phys: 0}
 			} else {
-				gpioMemErr = wrapf("failed to memory map in user space GPIO memory: %v", err)
+				gpioMemErr = wrapf("failed to memory map in user space GPIO memory: %w", err2)
 			}
 		} else {
-			gpioMemErr = wrapf("failed to open GPIO memory: %v", err)
+			gpioMemErr = wrapf("failed to open GPIO memory: %w", err)
 		}
 	}
 	return gpioMemView, gpioMemErr
@@ -200,7 +202,7 @@ func mapLinux(base uint64, size int) (*View, error) {
 	offset := int(base & 0xFFF)
 	i, err := mmap(f.Fd(), int64(base&^0xFFF), (size+offset+0xFFF)&^0xFFF)
 	if err != nil {
-		return nil, wrapf("mapping at 0x%x failed: %v", base, err)
+		return nil, wrapf("mapping at 0x%x failed: %w", base, err)
 	}
 	return &View{Slice: i[offset : offset+size], orig: i, phys: base + uint64(offset)}, nil
 }
