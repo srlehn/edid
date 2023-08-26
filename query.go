@@ -5,6 +5,7 @@ import (
 	"runtime"
 )
 
+// QueryEDID - valid methods: "x11","i2c","setupapi","ioreg"
 func QueryEDID(method string) ([]*EDID, error) {
 	var edids []*EDID
 	var errRet error
