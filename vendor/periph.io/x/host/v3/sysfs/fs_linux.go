@@ -132,13 +132,13 @@ func (e *eventsListener) init() error {
 
 func (e *eventsListener) initLocked() error {
 	var err error
-	e.epollFd, err = syscall.EpollCreate(1)
+	e.epollFd, err = syscall.EpollCreate1(syscall.EPOLL_CLOEXEC)
 	switch {
 	case err == nil:
 		break
 	case err.Error() == "function not implemented":
-		// Some arch (arm64) do not implement EpollCreate().
-		if e.epollFd, err = syscall.EpollCreate1(0); err != nil {
+		// Fall back to epoll_create.
+		if e.epollFd, err = syscall.EpollCreate(1); err != nil {
 			return err
 		}
 	default:
@@ -246,9 +246,10 @@ func (e *eventsListener) loop() {
 // addFd lazy initializes eventsListener if it was not initialized yet.
 //
 // It can fail due to various reasons, a few are:
-//   ENOSPC: /proc/sys/fs/epoll/max_user_watches limit was exceeded
-//   ENOMEM: No memory available
-//   EPERM: fd is a regular file or directory
+//
+//	ENOSPC: /proc/sys/fs/epoll/max_user_watches limit was exceeded
+//	ENOMEM: No memory available
+//	EPERM: fd is a regular file or directory
 func (e *eventsListener) addFd(fd uintptr, c chan<- time.Time, flags epollEvent) error {
 	if c == nil {
 		return errors.New("fd: addFd requires a valid channel")

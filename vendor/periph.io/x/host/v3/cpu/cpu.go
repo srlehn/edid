@@ -6,7 +6,6 @@ package cpu
 
 import (
 	"io"
-	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
@@ -60,8 +59,8 @@ func getMaxSpeedLinux() int64 {
 	if maxSpeed == -1 {
 		maxSpeed = 0
 		if f, err := openFile("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq", os.O_RDONLY); err == nil {
-			defer f.Close()
-			if b, err := ioutil.ReadAll(f); err == nil {
+			defer f.Close() //#nosec G307 -- File is opened readonly so errors on file close cannot cause write errors
+			if b, err := io.ReadAll(f); err == nil {
 				s := strings.TrimSpace(string(b))
 				if i, err := strconv.ParseInt(s, 10, 64); err == nil {
 					// Weirdly, the speed is listed as khz. :(
