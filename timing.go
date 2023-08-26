@@ -1,12 +1,18 @@
+//go:build dev
+
 package edid
 
 /*
+https://git.linuxtv.org/edid-decode.git/about/ is under the MIT License
+
+files to port (TODO):
 https://git.linuxtv.org/edid-decode.git/tree/calc-gtf-cvt.cpp
+https://git.linuxtv.org/edid-decode.git/tree/edid-decode.h
 */
 
-// https://git.linuxtv.org/edid-decode.git/tree/edid-decode.h
+// quote from https://git.linuxtv.org/edid-decode.git/tree/edid-decode.h :
 //
-// Video Timings
+// "Video Timings
 // If interlaced is true, then the vertical blanking
 // for each field is (vfp + vsync + vbp + 0.5), except for
 // the VIC 39 timings that doesn't have the 0.5 constant.
@@ -21,7 +27,7 @@ https://git.linuxtv.org/edid-decode.git/tree/calc-gtf-cvt.cpp
 //
 // But since borders are rarely used, the term 'active video' will
 // typically be the same as 'addressable video', and that's how I
-// use it.
+// use it."
 type Timings struct {
 	// Active horizontal and vertical frame height, excluding any
 	// borders, if present.

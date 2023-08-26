@@ -1,17 +1,13 @@
-//+build darwin
-
-// TODO later exclude cgo when cgo version is implemented
+//go:build darwin
+// +build darwin
 
 package edid
 
+// TODO later exclude cgo when cgo version is implemented
 // TODO Apple M1
 
 import (
-	"bufio"
-	"encoding/hex"
-	"os"
 	"os/exec"
-	"strings"
 )
 
 func queryEDIDIOReg() ([]*EDID, error) {
