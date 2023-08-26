@@ -15,10 +15,10 @@ func queryEDIDX11() ([]*EDID, error) {
 		return nil, err
 	}
 	defer X.Close()
-	return QueryEDIDX11(X)
+	return queryEDIDX11Conn(X)
 }
 
-func QueryEDIDX11(X *xgb.Conn) ([]*EDID, error) {
+func queryEDIDX11Conn(X *xgb.Conn) ([]*EDID, error) {
 	if X == nil {
 		return nil, errors.New(`received nil parameter`)
 	}
