@@ -1,4 +1,4 @@
-module gitlab.com/lehn/edid
+module github.com/srlehn/edid
 
 go 1.18
 
