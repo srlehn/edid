@@ -1,47 +1,55 @@
-//+build generate
+//go:build generate
 
 //go:generate go run pnp_gen.go
 
 package main
 
 import (
+	"encoding/csv"
 	"errors"
 	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"os"
 	"strings"
 	"text/template"
 	"time"
-
-	"github.com/antchfx/htmlquery"
 )
 
 func main() {
-	doc, err := htmlquery.LoadURL(`https://uefi.org/uefi-pnp-export`)
-	// https://uefi.org/pnp_id_list?search=&order=field_pnp_id&sort=asc&page=1
+	// https://uefi.org/PNP_ID_List?search=&order=field_pnp_id&sort=asc&page=1
+	resp, err := http.Get(`https://uefi.org/uefi-pnp-export`)
 	if err != nil {
 		log.Fatal(err)
 	}
-	rows, err := htmlquery.QueryAll(doc, `/html/body/table/tbody/tr`)
-	if err != nil {
-		log.Fatal(err)
-	}
+	rdr := csv.NewReader(resp.Body)
+	rdr.FieldsPerRecord = 3
+	rdr.LazyQuotes = true
 	pnpEntries := make(map[PNPID]*PNPEntry)
-	for _, row := range rows {
-		cells, err := htmlquery.QueryAll(row, `/td`)
+	isFirst := true
+	for {
+		rec, err := rdr.Read()
+		if errors.Is(err, io.EOF) {
+			break
+		}
 		if err != nil {
 			log.Fatal(err)
 		}
-		if len(cells) != 3 {
+		if isFirst {
+			isFirst = false
+			continue
+		}
+		if len(rec) != 3 {
 			log.Fatal(errors.New(`column count is not 3`))
 		}
-		id, err := NewPNPID(htmlquery.InnerText(cells[1]))
+		id, err := NewPNPID(rec[1])
 		if err != nil {
 			log.Fatal(err)
 		}
 		entry := &PNPEntry{
-			Company:        htmlquery.InnerText(cells[0]),
-			DateOfApproval: htmlquery.InnerText(cells[2]),
+			Company:        rec[0],
+			DateOfApproval: rec[2],
 		}
 		pnpEntries[id] = entry
 	}
