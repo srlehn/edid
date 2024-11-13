@@ -97,7 +97,7 @@ func queryEDIDSetupAPI() ([]*EDID, error) {
 			ret = append(
 				ret,
 				&EDID{
-					Data:    edid,
+					data:    edid,
 					Querier: `setupapi`,
 				},
 			)
